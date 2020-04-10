@@ -34,7 +34,7 @@ m4_define([pyzy_version],
     pyzy_major_version.pyzy_minor_version.pyzy_micro_version[]pyzy_maybe_datestamp)
 m4_define([pyzy_api_version], [1.0])
 
-AC_PREFEQ([2.62])
+AC_PREREQ([2.62])
 AC_INIT([pyzy], [pyzy_version],
         [http://code.google.com/p/pyzy/issues/entry],
         [pyzy])
@@ -52,7 +52,7 @@ AC_GNU_SOURCE
 # Support silent build rules. Disable
 # by either passing --disable-silent-rules to configure or passing V=1
 # to make
-AM_SILENT_RULES([yes])
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
 # Define sustituted variables:
 PYZY_MAJOR_VERSION=pyzy_major_version
@@ -196,7 +196,7 @@ if test -z "$DOXYGEN"; then
     AC_MSG_WARN([Doxygen not found - continuing without Doxygen support])
 fi
 AM_CONDITIONAL([HAVE_DOXYGEN], [test -n "$DOXYGEN"])
-AM_COND_IF([HAVE_DOXYGEN], [AC_CONFIG_FILES([docs/Doxyfile])])   
+AS_IF([test -n "$DOXYGEN"], [AC_CONFIG_FILES([docs/Doxyfile])])
 
 # OUTPUT files
 AC_CONFIG_FILES([
