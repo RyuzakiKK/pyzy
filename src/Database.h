@@ -79,7 +79,7 @@ public:
     static void finalize (void);
     static Database & instance (void)
     {
-        if (m_instance == NULL) {
+        if (m_instance.get () == NULL) {
             g_error ("Error: Please call InputContext::init () !");
         }
         return *m_instance;
