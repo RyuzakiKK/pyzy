@@ -27,16 +27,16 @@ main_db_DATA = \
 main_dbdir = $(pkgdatadir)/db
 
 DBVER = 1.0.0
-DBTAR = pyzy-database-$(DBVER).tar.bz2
+DBTAR = pyzy-database-$(DBVER).tar.gz
 
 $(DBTAR):
 	$(AM_V_GEN) \
-	wget http://pyzy.googlecode.com/files/$(DBTAR) || \
+	wget https://github.com/openSUSE/pyzy-database/archive/$(DBVER)/$(DBTAR) || \
 	( $(RM) $@; exit 1)
 
 stamp-db: $(DBTAR)
 	$(AM_V_GEN) \
-	tar jxfm $(DBTAR); \
+	tar zxfm $(DBTAR); \
 	mv db/main.db db/$(db_file); \
 	touch $@
 
