@@ -40,6 +40,7 @@ endif
 android.db: $(android_raw_data) $(create_scripts)
 	$(AM_V_GEN) \
 	$(RM) $@; \
+	set -o pipefail; \
 	$(srcdir)/create_db.py $(srcdir)/rawdict_utf16_65105_freq.txt | @SQLITE3@ $@ || \
 		( $(RM) $@ ; exit 1 )
 
